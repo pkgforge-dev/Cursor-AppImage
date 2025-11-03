@@ -20,6 +20,7 @@ wget --retry-connrefused --tries=30 "$SHARUN" -O ./quick-sharun
 chmod +x ./quick-sharun
 ./quick-sharun  \
 	./AppDir/bin/*             \
+	/usr/bin/hostname          \
 	/usr/lib/libnss*           \
 	/usr/lib/libsoftokn3.so    \
 	/usr/lib/libfreeblpriv3.so \
