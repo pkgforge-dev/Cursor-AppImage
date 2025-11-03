@@ -15,6 +15,7 @@ pacman -Syu --noconfirm \
 	libx11            \
 	libxrandr         \
 	libxss            \
+	nss               \
 	pulseaudio        \
 	pulseaudio-alsa   \
 	pipewire-audio    \
