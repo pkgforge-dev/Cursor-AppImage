@@ -1,5 +1,7 @@
 #!/bin/sh
 
+exit 1
+
 set -eu
 ARCH="$(uname -m)"
 DEB_SOURCE="https://cursor.com/download"
