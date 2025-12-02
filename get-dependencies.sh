@@ -42,8 +42,8 @@ esac
 
 DEB_LINK=$(
 	wget --retry-connrefused --tries=30 "$DEB_SOURCE" -O - \
-		| sed 's/[()",{} ]/\n/g'                       \
-		| grep -o  "https.*linux.*$deb_arch.*deb"      \
+		| sed 's/[()",{} ]/\n/g'                             \
+		| grep -o  "https.*downloads.*linux.*$deb_arch.*deb" \
 		| head -1
 )
 
