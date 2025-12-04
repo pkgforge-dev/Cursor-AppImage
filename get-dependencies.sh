@@ -47,7 +47,10 @@ DEB_LINK=$(
 		| head -1
 )
 
-wget --retry-connrefused --tries=30 "$DEB_LINK" -O /tmp/cursor.deb
+if ! wget --retry-connrefused --tries=30 "$DEB_LINK" -O /tmp/cursor.deb 2>/tmp/download.log; then
+	cat /tmp/download.log
+	exit 1
+fi
 ar xvf /tmp/cursor.deb
 tar -xvf ./data.tar.xz
 rm -f ./*.xz
@@ -56,5 +59,4 @@ mv -v ./AppDir/share/cursor                           ./AppDir/bin
 cp -v ./AppDir/share/applications/cursor.desktop      ./AppDir
 cp -v ./AppDir/share/pixmaps/co.anysphere.cursor.png  ./AppDir
 
-echo "$DEB_LINK" | awk -F'_' '{print $(NF-1)}' > ~/version
-
+awk -F'_' '/Location:/{print $(NF-1)}' /tmp/download.log > ~/version
