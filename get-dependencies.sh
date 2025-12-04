@@ -1,7 +1,5 @@
 #!/bin/sh
 
-exit 1
-
 set -eu
 ARCH="$(uname -m)"
 DEB_SOURCE="https://cursor.com/download"
@@ -38,14 +36,14 @@ chmod +x ./get-debloated-pkgs.sh
 echo "Getting Cursor..."
 echo "---------------------------------------------------------------"
 case "$ARCH" in # they use AMD64 and ARM64 for the deb links
-	x86_64)  deb_arch=amd64;;
+	x86_64)  deb_arch=x64;;
 	aarch64) deb_arch=arm64;;
 esac
 
 DEB_LINK=$(
 	wget --retry-connrefused --tries=30 "$DEB_SOURCE" -O - \
-		| sed 's/[()",{} ]/\n/g'                             \
-		| grep -o  "https.*downloads.*linux.*$deb_arch.*deb" \
+		| sed 's/[()",{} ]/\n/g'                            \
+		| grep "https.*download.*linux.*$deb_arch.*deb" \
 		| head -1
 )
 
